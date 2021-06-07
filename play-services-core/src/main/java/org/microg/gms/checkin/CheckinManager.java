@@ -20,6 +20,7 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
 
 import org.microg.gms.auth.AuthConstants;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckinManager {
+    private static final String TAG = CheckinManager.class.getSimpleName();
     private static final long MIN_CHECKIN_INTERVAL = 3 * 60 * 60 * 1000; // 3 hours
 
     @SuppressWarnings("MissingPermission")
@@ -43,7 +45,7 @@ public class CheckinManager {
             return null;
         if (!CheckinPrefs.get(context).isEnabled())
             return null;
-        List<CheckinClient.Account> accounts = new ArrayList<CheckinClient.Account>();
+        List<CheckinClient.Account> accounts = new ArrayList<>();
         AccountManager accountManager = AccountManager.get(context);
         String accountType = AuthConstants.DEFAULT_ACCOUNT_TYPE;
         for (Account account : accountManager.getAccountsByType(accountType)) {
@@ -78,5 +80,19 @@ public class CheckinManager {
         }
 
         return info;
+    }
+
+    // Unused
+    private static boolean hasGooglePlayServices(Context context) {
+        // boolean hasGooglePlayServices = false;
+        try {
+            // We will assume that the user has Google Play services installed if context is null
+            if (context == null || (context != null && context.getPackageManager().getApplicationInfo("com.google.android.gms", 0).enabled)) {
+                return true;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+        return false;
     }
 }

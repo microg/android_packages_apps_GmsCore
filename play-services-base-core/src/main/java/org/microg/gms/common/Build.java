@@ -20,17 +20,17 @@ import java.util.Locale;
 import java.util.Random;
 
 public class Build {
-    public String fingerprint = android.os.Build.FINGERPRINT;
-    public String hardware = android.os.Build.HARDWARE;
-    public String brand = android.os.Build.BRAND;
+    public String fingerprint = "google/coral/coral:10/QD1A.190821.007/5831595:user/release-keys"; //android.os.Build.FINGERPRINT;
+    public String hardware = "coral"; //android.os.Build.HARDWARE;
+    public String brand = "google"; //android.os.Build.BRAND;
     public String radio = getRadio();
-    public String bootloader = android.os.Build.BOOTLOADER;
+    public String bootloader = "c2f2-0.2-5799621"; //android.os.Build.BOOTLOADER;
     public long time = android.os.Build.TIME;
-    public String device = android.os.Build.DEVICE;
+    public String device = "generic"; //android.os.Build.DEVICE;
     public int sdk = android.os.Build.VERSION.SDK_INT;
-    public String model = android.os.Build.MODEL;
-    public String manufacturer = android.os.Build.MANUFACTURER;
-    public String product = android.os.Build.PRODUCT;
+    public String model = "mainline"; //android.os.Build.MODEL;
+    public String manufacturer = "Google"; //android.os.Build.MANUFACTURER;
+    public String product = "coral"; //android.os.Build.PRODUCT;
     public String id = android.os.Build.ID;
     public String serial = generateSerialNumber(); // TODO: static
 
